@@ -7,17 +7,25 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 
-import {fetchUserByEmail} from '../Apis/apiAuth';
+import {fetchGetUserByEmail} from '../Apis/apiAuth';
+import {REGISTER_SCREEN} from '../Config/ScreenNames';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   const onPressGoogleSignIn = async () => {
     try {
       const userInfo = await GoogleSignin.signIn();
       console.log('onPressGoogleSignIn : ', userInfo.user.email);
 
-      const checkUser = await fetchUserByEmail(userInfo.user.email, 'google');
+      const checkUser = await fetchGetUserByEmail(
+        userInfo.user.email,
+        'google',
+      );
       if (checkUser.code === 404) {
         console.log('user does not exist, make them register');
+        navigation.navigate(REGISTER_SCREEN, {
+          email: userInfo.user.email,
+          loginType: 'google',
+        });
         return;
       } else {
         console.log('user exist make them login!');

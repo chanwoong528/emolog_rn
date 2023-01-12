@@ -15,6 +15,13 @@ import {GOOGLE_WEBCLIENT_ID} from './src/Config/_commonKeys';
 
 import HomeScreen from './src/Screens/HomeScreen';
 import LoginScreen from './src/Screens/LoginScreen';
+import RegisterScreen from './src/Screens/RegisterScreen';
+import {
+  HOME_SCREEN,
+  LOGIN_SCREEN,
+  REGISTER_SCREEN,
+} from './src/Config/ScreenNames';
+import {AuthProvider} from './src/Store/contextAuth';
 
 const App = () => {
   const rootStack = createNativeStackNavigator();
@@ -32,26 +39,33 @@ const App = () => {
   };
 
   return (
-    <NavigationContainer>
-      <rootStack.Navigator
-        initialRouteName="Login"
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <rootStack.Group>
-          <rootStack.Screen
-            name="Home"
-            component={HomeScreen}
-            // initialParams={{codepushFlag: codepushFlag}}
-          />
-          <rootStack.Screen
-            name="Login"
-            component={LoginScreen}
-            // initialParams={{codepushFlag: codepushFlag}}
-          />
-        </rootStack.Group>
-      </rootStack.Navigator>
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <rootStack.Navigator
+          initialRouteName={LOGIN_SCREEN}
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <rootStack.Group>
+            <rootStack.Screen
+              name={HOME_SCREEN}
+              component={HomeScreen}
+              // initialParams={{codepushFlag: codepushFlag}}
+            />
+            <rootStack.Screen
+              name={LOGIN_SCREEN}
+              component={LoginScreen}
+              // initialParams={{codepushFlag: codepushFlag}}
+            />
+            <rootStack.Screen
+              name={REGISTER_SCREEN}
+              component={RegisterScreen}
+              // initialParams={{codepushFlag: codepushFlag}}
+            />
+          </rootStack.Group>
+        </rootStack.Navigator>
+      </NavigationContainer>
+    </AuthProvider>
   );
 };
 
