@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "399425921067",
+    "project_id": "emolog-d4a92",
+    "storage_bucket": "emolog-d4a92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399425921067:android:53219584e39ce0da1c0a6e",
+        "android_client_info": {
+          "package_name": "com.emolog_rn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399425921067-9d66uenflsqq49vn5r8b5uhft7umnh5t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emolog_rn",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "399425921067-s8k79mbcvpvk82uh9u864kg0ju4rlic0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQbQDdVrJl_GWnkrTkSVJ7tq-eZKvPa34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399425921067-s8k79mbcvpvk82uh9u864kg0ju4rlic0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "399425921067-qsafb3pg53453u5mn81eoff04aov70hv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "emolog"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
