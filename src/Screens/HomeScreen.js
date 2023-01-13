@@ -1,10 +1,12 @@
+import React, {useContext} from 'react';
 import {SafeAreaView, View, Text} from 'react-native';
-import React from 'react';
-
+import {AuthContext} from '../Store/contextAuth';
 const HomeScreen = () => {
+  const {email, accessToken} = useContext(AuthContext);
+
   return (
     <SafeAreaView>
-      <Text>HomeScreen</Text>
+      <Text>HomeScreen {email}</Text>
     </SafeAreaView>
   );
 };

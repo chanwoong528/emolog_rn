@@ -34,12 +34,12 @@ const App = () => {
     GoogleSignin.configure({
       webClientId: GOOGLE_WEBCLIENT_ID,
       offlineAccess: true,
-      hostedDomain: '',
     });
   };
 
   return (
     <AuthProvider>
+      <StatusBar />
       <NavigationContainer>
         <rootStack.Navigator
           initialRouteName={LOGIN_SCREEN}
@@ -47,20 +47,11 @@ const App = () => {
             headerShown: false,
           }}>
           <rootStack.Group>
-            <rootStack.Screen
-              name={HOME_SCREEN}
-              component={HomeScreen}
-              // initialParams={{codepushFlag: codepushFlag}}
-            />
-            <rootStack.Screen
-              name={LOGIN_SCREEN}
-              component={LoginScreen}
-              // initialParams={{codepushFlag: codepushFlag}}
-            />
+            <rootStack.Screen name={HOME_SCREEN} component={HomeScreen} />
+            <rootStack.Screen name={LOGIN_SCREEN} component={LoginScreen} />
             <rootStack.Screen
               name={REGISTER_SCREEN}
               component={RegisterScreen}
-              // initialParams={{codepushFlag: codepushFlag}}
             />
           </rootStack.Group>
         </rootStack.Navigator>

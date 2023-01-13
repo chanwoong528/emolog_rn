@@ -3,8 +3,9 @@ import {SafeAreaView, Text, TextInput, Button, Platform} from 'react-native';
 import {fetchPostNewUser} from '../Apis/apiAuth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthContext, LOGIN_USER} from '../Store/contextAuth';
+import {HOME_SCREEN} from '../Config/ScreenNames';
 
-const RegisterScreen = ({route}) => {
+const RegisterScreen = ({route, navigation}) => {
   const {email, loginType} = route.params;
   const [name, setName] = useState('');
   const [pw, setPw] = useState('');
@@ -29,7 +30,6 @@ const RegisterScreen = ({route}) => {
         'refreshToken',
         registeredData.data.refreshToken,
       );
-      console.log(registeredData.userInfo);
       authDispatch({
         type: LOGIN_USER,
         payload: {
@@ -38,6 +38,7 @@ const RegisterScreen = ({route}) => {
           refreshToken: registeredData.data.refreshToken,
         },
       });
+      navigation.navigate(HOME_SCREEN);
     }
   };
   return (
