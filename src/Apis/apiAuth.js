@@ -27,3 +27,15 @@ export const fetchPostNewUser = async newUserData => {
     console.warn('fetchPostNewUser[Error]', error);
   }
 };
+export const fetchPostLoginByAcc = async (accessToken, refreshToken) => {
+  try {
+    const fetchPostLoginByAcc = await axios.post(`${BASE_URI}/user/login`, {
+      accessToken,
+      refreshToken,
+    });
+    const data = await fetchPostLoginByAcc.data;
+    return data;
+  } catch (error) {
+    console.warn('fetchPostLoginByAcc[Error]', error);
+  }
+};
