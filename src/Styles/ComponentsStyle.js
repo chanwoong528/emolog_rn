@@ -20,10 +20,11 @@ export const BtnStyles = StyleSheet.create({
 });
 export const NavStyles = StyleSheet.create({
   NavView: {
-    padding: 10,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    padding: 10,
+    backgroundColor: '#FFF',
   },
   NavLeft: {
     display: 'flex',

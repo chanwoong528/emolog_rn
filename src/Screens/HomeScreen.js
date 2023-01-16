@@ -50,15 +50,17 @@ const HomeScreen = ({navigation}) => {
           // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
           // maxDate={'2023-01-30'}
           // Handler which gets executed on day press. Default = undefined
-          markedDates={{
-            ...diaries.reduce((obj, item) => {
-              return Object.assign(obj, {
-                [item.calendar_date]: [
-                  {diary_id: item.diary_id, diary_emotion: item.diary_emotion},
-                ],
-              });
-            }, {}),
-          }}
+          markedDates={
+            {
+              // ...diaries.reduce((obj, item) => {
+              //   return Object.assign(obj, {
+              //     [item.calendar_date]: [
+              //       {diary_id: item.diary_id, diary_emotion: item.diary_emotion},
+              //     ],
+              //   });
+              // }, {}),
+            }
+          }
           pagingEnabled={true}
           monthFormat={'yyyy MM'}
           hideArrows={false}

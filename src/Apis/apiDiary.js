@@ -42,3 +42,20 @@ export const fetchGetAllDiaries = async accessToken => {
     console.log('fetchPostNewDiary[error]: ', error);
   }
 };
+
+export const fetchGetOneDiary = async (id, accessToken) => {
+  try {
+    const fetchGetOneDiary = await axios.get(`${BASE_URI}/diary/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const data = await fetchGetOneDiary.data;
+    return data;
+  } catch (error) {
+    console.log('fetchPostNewDiary[error]: ', error);
+  }
+};
+export const fetchGetLimitedDiaries = dateString => {
+  //get 31 as maximum
+};

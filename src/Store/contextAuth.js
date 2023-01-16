@@ -2,6 +2,7 @@ import {createContext, useReducer} from 'react';
 export const AuthContext = createContext();
 
 export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 
 const initialAuthState = {
   userId: '',
@@ -19,6 +20,8 @@ const AuthReducer = (state = initialAuthState, action) => {
     case LOGIN_USER:
       return {...action.payload};
 
+    case LOGOUT_USER:
+      return initialAuthState;
     default:
       return state;
   }

@@ -13,7 +13,8 @@ const DiariesReducer = (state = initialDiariesState, action) => {
       return {...state, diaries: action.payload.diaries};
 
     case ADD_DIARY:
-
+      console.log('!!!!!', action.payload);
+      return {...state, diaries: [...state.diaries, action.payload.diary]};
     default:
       return state;
   }

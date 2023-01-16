@@ -6,9 +6,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Pressable,
 } from 'react-native';
-import React, {useRef, useState, useContext} from 'react';
+import React, {useRef, useState, useContext, useEffect} from 'react';
 import {actions, RichEditor, RichToolbar} from 'react-native-pell-rich-editor';
 
 import {AuthContext} from '../Store/contextAuth';
@@ -19,11 +18,12 @@ import DatePicker from 'react-native-date-picker';
 import Icons from '../assets/Icons';
 import ModalEmotionPicker from '../components/UI/ModalEmotionPicker';
 import {DiaryAddStyles} from '../Styles/ScreeStyles';
-import Divider from '../components/UI/Divider';
 import {HOME_SCREEN} from '../Config/ScreenNames';
+import {ADD_DIARY, DiariesContext} from '../Store/contextDiary';
 
-const DiaryAddScreen = ({navigation}) => {
+const DiaryAddScreen = ({navigation, route}) => {
   const {userId} = useContext(AuthContext);
+  const {diariesDispatch} = useContext(DiariesContext);
   const richText = useRef();
   const [title, setTitle] = useState('');
   const [contentHtml, setContentHtml] = useState('');
@@ -32,16 +32,31 @@ const DiaryAddScreen = ({navigation}) => {
   const [emoOpen, setEmoOpen] = useState(false);
   const [dailyEmo, setDailyEmo] = useState(IconsEmotion.choose);
 
-  const onPressSubmitDiary = () => {
-    const addNewDiary = fetchPostNewDiary(
+  useEffect(() => {
+    if (!!route.params) {
+      setCalenderDate(new Date(route.params.calendar_date.dateString));
+    }
+  }, []);
+
+  const onPressSubmitDiary = async () => {
+    const addNewDiary = await fetchPostNewDiary(
       calenderDate,
       title,
       contentHtml,
       userId,
       dailyEmo.id,
     );
+    console.log(addNewDiary.data);
+    if (addNewDiary.code === 201) {
+      diariesDispatch({
+        type: ADD_DIARY,
+        payload: {
+          diary: addNewDiary.data,
+        },
+      });
+    }
+
     navigation.navigate(HOME_SCREEN);
-    console.log(addNewDiary);
   };
 
   return (
@@ -89,7 +104,7 @@ const DiaryAddScreen = ({navigation}) => {
               alignItems: 'center',
             }}
             onPress={() => setDateOpen(!dateOpen)}>
-            <SvgXml width={30} height={30} xml={Icons.addDiaryIcon} />
+            <SvgXml width={30} height={30} xml={Icons.addDateIcon} />
           </TouchableOpacity>
 
           <TouchableOpacity

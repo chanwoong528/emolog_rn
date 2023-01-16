@@ -13,12 +13,16 @@ import RegisterScreen from '../Screens/RegisterScreen';
 
 import {
   DIARY_ADD_SCREEN,
+  DIARY_LIST,
+  DIARY_SCREEN,
   HOME_SCREEN,
   LOGIN_SCREEN,
   REGISTER_SCREEN,
 } from '../Config/ScreenNames';
 import DiaryAddScreen from '../Screens/DiaryAddScreen';
 import Navbar from '../components/Navbar/Navbar';
+import DiaryScreen from '../Screens/DiaryScreen';
+import DiaryListScreen from '../Screens/DiaryListScreen';
 
 const RootRoutes = () => {
   const rootStack = createNativeStackNavigator();
@@ -39,6 +43,8 @@ const RootRoutes = () => {
             name={DIARY_ADD_SCREEN}
             component={DiaryAddScreen}
           />
+          <rootStack.Screen name={DIARY_SCREEN} component={DiaryScreen} />
+          <rootStack.Screen name={DIARY_LIST} component={DiaryListScreen} />
         </rootStack.Group>
       </rootStack.Navigator>
     </NavigationContainer>
