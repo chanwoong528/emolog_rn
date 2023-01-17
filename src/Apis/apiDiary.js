@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {BASE_URI} from './customAxios';
+import customAxios, {BASE_URI} from './customAxios';
 
 export const fetchPostNewDiary = async (
   calDate,
@@ -39,7 +39,7 @@ export const fetchGetAllDiaries = async accessToken => {
 
     return data;
   } catch (error) {
-    console.log('fetchPostNewDiary[error]: ', error);
+    console.warn('fetchPostNewDiary[error]: ', error);
   }
 };
 
@@ -53,9 +53,33 @@ export const fetchGetOneDiary = async (id, accessToken) => {
     const data = await fetchGetOneDiary.data;
     return data;
   } catch (error) {
-    console.log('fetchPostNewDiary[error]: ', error);
+    console.warn('fetchPostNewDiary[error]: ', error);
   }
 };
-export const fetchGetLimitedDiaries = dateString => {
-  //get 31 as maximum
+export const fetchGetLimitedDiaries = async (dateString, accessToken) => {
+  let today = new Date(dateString);
+  let startDate = new Date().setDate(today.getDate() - 15); //get 31 as maximum
+  startDate = new Date(startDate).toISOString().split('T')[0];
+  let endDate = new Date().setDate(today.getDate() + 15);
+  endDate = new Date(endDate).toISOString().split('T')[0];
+  try {
+    const fetchGetLimitedDiaries = await customAxios.get(
+      `${BASE_URI}/diary/limit`,
+      {
+        // headers: {
+        //   Authorization: `Bearer ${accessToken}`,
+        // },
+        params: {
+          startDate,
+          endDate,
+        },
+      },
+    );
+
+    const data = await fetchGetLimitedDiaries.data;
+    console.log('api>>', data.data);
+    return data;
+  } catch (error) {
+    console.warn('fetchGetLimitedDiaries[error]: ', error);
+  }
 };
